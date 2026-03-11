@@ -13,6 +13,7 @@ import Tables from './pages/Tables';
 import Reservations from './pages/Reservations';
 import Staff from './pages/Staff';
 import Download from './pages/Download';
+import CustomerMenu from './pages/CustomerMenu';
 import './App.css';
 
 function AppContent() {
@@ -24,6 +25,8 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/menu/:tableId" element={<CustomerMenu />} />
+        <Route path="/menu" element={<CustomerMenu />} />
         <Route
           path="/dashboard"
           element={
