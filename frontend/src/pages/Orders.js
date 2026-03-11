@@ -133,7 +133,8 @@ const Orders = () => {
 
   const loadRazorpay = async (order) => {
     try {
-      const res = await fetch("http://localhost:5001/api/payment/create-order", {
+      const API_URL = process.env.REACT_APP_API_URL || '';
+      const res = await fetch(`${API_URL}/api/payment/create-order`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -151,7 +152,7 @@ const Orders = () => {
       console.log('Razorpay Order Created:', razorpayOrder);
   
       const options = {
-        key: "rzp_test_RxKSa3qBeXb7ll", // 🔴 move to .env in production
+        key: process.env.REACT_APP_RAZORPAY_KEY_ID || "rzp_test_RxKSa3qBeXb7ll",
         amount: razorpayOrder.amount,
         currency: "INR",
         name: "Resto App",
@@ -161,19 +162,17 @@ const Orders = () => {
         handler: async function (response) {
           console.log('Razorpay Handler Response:', response);
           try {
-            const verify = await fetch(
-              "http://localhost:5001/api/payment/verify",
-              {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  razorpay_order_id: response.razorpay_order_id,
-                  razorpay_payment_id: response.razorpay_payment_id,
-                  razorpay_signature: response.razorpay_signature,
-                  orderId: order._id
-                }),
-              }
-            );
+            const API_URL = process.env.REACT_APP_API_URL || '';
+            const verify = await fetch(`${API_URL}/api/payment/verify`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+                orderId: order._id
+              }),
+            });
     
             const result = await verify.json();
             console.log('Verification Result:', result);

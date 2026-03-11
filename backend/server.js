@@ -13,6 +13,76 @@ dotenv.config();
 // Connect to database
 connectDB();
 
+// Auto-seed data if needed
+const seedDataIfNeeded = async () => {
+  try {
+    const User = require('./models/User');
+    const Menu = require('./models/Menu');
+    const Table = require('./models/Table');
+    
+    const userCount = await User.countDocuments();
+    
+    if (userCount === 0) {
+      console.log('Seeding initial data...');
+      
+      // Create default users
+      await User.create({
+        name: 'Manager',
+        email: 'manager@restaurant.com',
+        password: 'password123',
+        role: 'manager',
+        phone: '1234567890',
+      });
+      
+      await User.create({
+        name: 'Waiter',
+        email: 'waiter@restaurant.com',
+        password: 'password123',
+        role: 'waiter',
+        phone: '1234567891',
+      });
+      
+      await User.create({
+        name: 'Chef',
+        email: 'chef@restaurant.com',
+        password: 'password123',
+        role: 'chef',
+        phone: '1234567892',
+      });
+      
+      // Create menu items
+      await Menu.create([
+        { name: 'Spring Rolls', description: 'Crispy vegetable spring rolls', category: 'appetizer', price: 8.99, preparationTime: 12 },
+        { name: 'Garlic Bread', description: 'Fresh baked bread with garlic butter', category: 'appetizer', price: 6.99, preparationTime: 8 },
+        { name: 'Caesar Salad', description: 'Fresh romaine lettuce with Caesar dressing', category: 'salad', price: 12.99, preparationTime: 10 },
+        { name: 'Grilled Chicken', description: 'Tender grilled chicken breast', category: 'main course', price: 18.99, preparationTime: 25 },
+        { name: 'Chicken Burger', description: 'Grilled chicken burger with fries', category: 'main course', price: 15.99, preparationTime: 20 },
+        { name: 'Margherita Pizza', description: 'Classic pizza with tomato sauce and mozzarella', category: 'main course', price: 14.99, preparationTime: 15 },
+        { name: 'Chocolate Cake', description: 'Rich chocolate layer cake', category: 'dessert', price: 8.99, preparationTime: 5 },
+        { name: 'Coffee', description: 'Hot brewed coffee', category: 'beverage', price: 3.99, preparationTime: 3 },
+      ]);
+      
+      // Create tables
+      await Table.create([
+        { tableNumber: '1', capacity: 2, location: 'indoor', status: 'available' },
+        { tableNumber: '2', capacity: 2, location: 'indoor', status: 'available' },
+        { tableNumber: '3', capacity: 4, location: 'indoor', status: 'available' },
+        { tableNumber: '4', capacity: 4, location: 'indoor', status: 'available' },
+        { tableNumber: '5', capacity: 6, location: 'indoor', status: 'available' },
+      ]);
+      
+      console.log('Seed data created successfully!');
+    } else {
+      console.log('Database already has data, skipping seed.');
+    }
+  } catch (error) {
+    console.error('Error seeding data:', error);
+  }
+};
+
+// Call seed function after database connection
+setTimeout(seedDataIfNeeded, 2000);
+
 // Initialize Express app
 const app = express();
 
