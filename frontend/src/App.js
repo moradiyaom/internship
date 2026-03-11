@@ -36,7 +36,7 @@ function AppContent() {
           }
         />
         <Route
-          path="/menu"
+          path="/menu-management"
           element={
             <PrivateRoute>
               <Menu />

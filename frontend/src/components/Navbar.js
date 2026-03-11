@@ -21,7 +21,7 @@ const Navbar = () => {
                 <>
                 <div className = "navbar-links" >
                 {user.role === 'manager' && < Link to = "/dashboard" > Dashboard </Link>}
-                <Link to = "/menu" > Menu </Link> 
+                <Link to = "/menu-management" > Menu </Link>
                 <Link to = "/orders" > Orders </Link>
                 {user.role === 'manager' && <Link to = "/tables" > Tables </Link>} 
                 {user.role === 'manager' && <Link to = "/reservations" > Reservations </Link>}

@@ -20,14 +20,16 @@ const Login = () => {
       const response = await login(email, password);
       
       console.log('Login response:', response);
-      console.log('Response data:', response.data);
+      console.log('Response data:', response);
 
       const role = response.role;   // Make sure login() returns role
 
       if (role === "manager") {
         navigate("/dashboard");
       } else if (role === "waiter") {
-        navigate("/menu");
+        navigate("/menu-management");
+      } else if (role === "chef") {
+        navigate("/orders");
       } else {
         navigate("/");
       }
