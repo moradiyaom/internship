@@ -49,14 +49,18 @@ const register = async (req, res) => {
 
 // @desc    Authenticate a user
 // @route   POST /api/auth/login
-// @access  Public
+// @access   Public
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
+    
+    console.log('Login attempt:', email);
 
     // Check for user email
     const user = await User.findOne({ email });
-
+    
+    console.log('User found:', user ? 'yes' : 'no');
+    
     if (user && (await user.matchPassword(password))) {
       const token = jwt.sign(
         { id: user._id, role: user.role },
@@ -64,17 +68,22 @@ const login = async (req, res) => {
         { expiresIn: '30d' }
       );
 
-      res.json({
+      const response = {
         _id: user._id,
         name: user.name,
         email: user.email,
         role: user.role,
         token,
-      });
+      };
+      
+      console.log('Login successful, sending response:', response);
+      res.json(response);
     } else {
+      console.log('Invalid credentials');
       res.status(401).json({ message: 'Invalid email or password' });
     }
   } catch (error) {
+    console.error('Login error:', error);
     res.status(500).json({ message: error.message });
   }
 };

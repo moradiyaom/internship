@@ -17,23 +17,28 @@ const Login = () => {
     setLoading(true);
 
     try {                                                                         
-  const response = await login(email, password);
+      const response = await login(email, password);
+      
+      console.log('Login response:', response);
+      console.log('Response data:', response.data);
 
-  const role = response.role;   // Make sure login() returns role
+      const role = response.role;   // Make sure login() returns role
 
-  if (role === "manager") {
-    navigate("/dashboard");
-  } else if (role === "waiter") {
-    navigate("/menu");
-  } else {
-    navigate("/");
-  }
+      if (role === "manager") {
+        navigate("/dashboard");
+      } else if (role === "waiter") {
+        navigate("/menu");
+      } else {
+        navigate("/");
+      }
 
-} catch (err) {
-  setError(err.response?.data?.message || 'Login failed. Please try again.');
-} finally {
-  setLoading(false);
-}
+    } catch (err) {
+      console.error('Login error:', err);
+      console.error('Error response:', err.response);
+      setError(err.response?.data?.message || 'Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
