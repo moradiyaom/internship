@@ -4,7 +4,7 @@ import './QRCode.css';
 
 const QRCodePage = () => {
   const canvasRef = useRef(null);
-  const menuUrl = `${window.location.origin}/customer-menu`;
+  const menuUrl = `${window.location.origin}/#/customer-menu`;
 
   useEffect(() => {
     if (canvasRef.current) {
@@ -50,8 +50,7 @@ const QRCodePage = () => {
             💾 Download QR PNG
           </button>
           <a href={menuUrl} target="_blank" rel="noopener noreferrer" className="btn-test">
-            🔗 Test Menu Link
-          </a>
+            🔗 Test Menu Link\n          </a>
         </div>
       </div>
 
