@@ -14,6 +14,7 @@ import Reservations from './pages/Reservations';
 import Staff from './pages/Staff';
 import Download from './pages/Download';
 import PublicMenu from './pages/PublicMenu';
+import CustomerMenu from './pages/CustomerMenu';
 import QRCodePage from './pages/QRCode';
 import './App.css';
 
@@ -28,6 +29,7 @@ function AppContent() {
         <Route path="/login" element={<Login />} />
         <Route path="/menu/:tableId" element={<PublicMenu />} />
         <Route path="/menu" element={<PublicMenu />} />
+        <Route path="/customer-menu" element={<CustomerMenu />} />
         <Route
           path="/dashboard"
           element={
