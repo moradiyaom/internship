@@ -78,6 +78,7 @@ const Login = () => {
           <p>Default credentials:</p>
           <p>Manager: manager@restaurant.com / password123</p>
           <p>Waiter: waiter@restaurant.com / password123</p>
+          <p>Chef: chef@restaurant.com / password123</p>
         </div>
       </div>
     </div>

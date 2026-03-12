@@ -64,7 +64,7 @@ const Menu = () => {
     setShowForm(true);
   };
 
-  const handleDelete = async (id) => {
+const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this item?')) return;
     try {
       await menuService.delete(id);
@@ -72,6 +72,21 @@ const Menu = () => {
     } catch (error) {
       console.error('Error deleting menu item:', error);
       alert('Error deleting menu item');
+    }
+  };
+
+  const handleToggleAvailability = async (item) => {
+    try {
+      // Optimistic update
+      setMenuItems(prev => prev.map(i => 
+        i._id === item._id ? { ...i, isAvailable: !item.isAvailable } : i
+      ));
+      await menuService.toggleAvailability(item._id, item.isAvailable);
+    } catch (error) {
+      // Revert on error
+      fetchMenu();
+      console.error('Error toggling availability:', error);
+      alert('Error toggling availability');
     }
   };
 
@@ -189,8 +204,14 @@ const Menu = () => {
               <span className="time">{item.preparationTime} min</span>
             </div>
             {!item.isAvailable && <span className="badge">Unavailable</span>}
-            {canEdit && (
+{canEdit && (
               <div className="menu-actions">
+                <button 
+                  className={`toggle-btn ${item.isAvailable ? 'available' : 'unavailable'}`}
+                  onClick={() => handleToggleAvailability(item)}
+                >
+                  {item.isAvailable ? 'Available' : 'Unavailable'}
+                </button>
                 <button onClick={() => handleEdit(item)}>Edit</button>
                 {user?.role === 'manager' && (
                   <button onClick={() => handleDelete(item._id)} className="delete">Delete</button>

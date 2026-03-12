@@ -25,6 +25,11 @@ const menuService = {
     const response = await api.delete(`/menu/${id}`);
     return response.data;
   },
+
+  toggleAvailability: async (id, currentIsAvailable) => {
+    const response = await api.put(`/menu/${id}`, { isAvailable: !currentIsAvailable });
+    return response.data;
+  },
 };
 
 export default menuService;

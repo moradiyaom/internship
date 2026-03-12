@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/restaurant_management/static/css/main.b2933600.css",
+    "main.js": "/restaurant_management/static/js/main.a36bd825.js",
+    "index.html": "/restaurant_management/index.html",
+    "main.b2933600.css.map": "/restaurant_management/static/css/main.b2933600.css.map",
+    "main.a36bd825.js.map": "/restaurant_management/static/js/main.a36bd825.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b2933600.css",
+    "static/js/main.a36bd825.js"
+  ]
+}
