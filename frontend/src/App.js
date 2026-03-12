@@ -103,7 +103,7 @@ function AppContent() {
 function App() {
   return (
     <AuthProvider>
-      <Router>
+<Router basename={process.env.PUBLIC_URL || '/'}>
         <AppContent />
       </Router>
     </AuthProvider>
