@@ -24,13 +24,13 @@ const Navbar = () => {
                 <Link to = "/menu-management" > Menu </Link>
                 <Link to = "/orders" > Orders </Link>
                 {user.role === 'manager' && <Link to = "/tables" > Tables </Link>} 
-                {user.role === 'manager' && <Link to = "/QRCode" > QRcode </Link>} 
+                
                 {user.role === 'manager' && <Link to = "/reservations" > Reservations </Link>}
                 
                 {user.role === 'manager' && < Link to = "/staff" > Staff </Link>}
-                {/*
-                {user.role === 'manager' && < Link to = "/download" > Download </Link>}
-                */}  
+                
+                < Link to = "/QRCode" > QRcode </Link>
+                 
                 </div > 
                 <div className = "navbar-user" >
                 <span > Welcome, { user.name }({ user.role }) </span> 
