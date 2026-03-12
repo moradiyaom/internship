@@ -24,7 +24,7 @@ const Navbar = () => {
                 <Link to = "/menu-management" > Menu </Link>
                 <Link to = "/orders" > Orders </Link>
                 {user.role === 'manager' && <Link to = "/tables" > Tables </Link>} 
-                {user.role === 'manager' && <Link to = "/CustomerMenu" > Customer Menu </Link>} 
+                {user.role === 'manager' && <Link to = "/QRCode" > QRcode </Link>} 
                 {user.role === 'manager' && <Link to = "/reservations" > Reservations </Link>}
                 
                 {user.role === 'manager' && < Link to = "/staff" > Staff </Link>}
