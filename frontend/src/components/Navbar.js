@@ -29,7 +29,7 @@ const Navbar = () => {
                 
                 {user.role === 'manager' && < Link to = "/staff" > Staff </Link>}
                 
-                < Link to = "/QRCode" > QRcode </Link>
+                <Link to="/QRCode">QR Code</Link>
                  
                 </div > 
                 <div className = "navbar-user" >

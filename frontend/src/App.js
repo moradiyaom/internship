@@ -14,6 +14,7 @@ import Reservations from './pages/Reservations';
 import Staff from './pages/Staff';
 import Download from './pages/Download';
 import PublicMenu from './pages/PublicMenu';
+import QRCodePage from './pages/QRCode';
 import './App.css';
 
 function AppContent() {
@@ -72,6 +73,14 @@ function AppContent() {
           element={
             <PrivateRoute>
               <Staff />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/QRCode"
+          element={
+            <PrivateRoute>
+              <QRCodePage />
             </PrivateRoute>
           }
         />
