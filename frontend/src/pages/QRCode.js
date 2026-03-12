@@ -4,7 +4,7 @@ import './QRCode.css';
 
 const QRCodePage = () => {
   const canvasRef = useRef(null);
-  const menuUrl = `${window.location.origin}/customer-menu`;
+  const menuUrl = `${window.location.origin}/menu`;
 
   useEffect(() => {
     if (canvasRef.current) {

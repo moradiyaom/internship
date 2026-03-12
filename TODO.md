@@ -15,8 +15,8 @@
    - Login → click QR Code → verify renders + QR generates
    - Test download/scan
 
-### 4. [✅ DONE] Handle /customer-menu if needed
-   - PublicMenu accessible without login ✓
+### 4. [UPDATED] Fix QR customer URL mismatch
+   - Changed '/customer-menu' → '/menu' (existing public route) ✓
 
 ### 5. [READY] Rebuild & deploy frontend
    - npm run build (in frontend/)
