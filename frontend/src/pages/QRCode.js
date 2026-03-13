@@ -47,7 +47,7 @@ const QRCodePage = () => {
   };
 
 const LOCAL_URL = `http://${window.location.hostname === 'localhost' ? 'localhost:3000' : window.location.hostname}/menu/${tableNumber}`;
-const RENDER_URL = `https://your-app-name.onrender.com/menu/${tableNumber}`; // Replace 'your-app-name' with your actual Render domain
+const RENDER_URL = `https://internship-owhq.onrender.com/menu`; // Webserver
 
 
 
@@ -77,7 +77,9 @@ const RENDER_URL = `https://your-app-name.onrender.com/menu/${tableNumber}`; // 
           <canvas ref={canvasRef} />
           <div className="qr-info">
             <p><strong>URL:</strong> <span className="qr-url">{qrUrl}</span></p>
-<p><strong>Local:</strong> {LOCAL_URL}</p>
+ <p><strong>Local:</strong> {LOCAL_URL}</p>
+  <p><strong>Render:</strong> {RENDER_URL}</p>
+
 
             <p><strong>Print & place on table #{tableNumber}</strong></p>
           </div>

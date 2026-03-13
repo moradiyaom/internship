@@ -232,11 +232,19 @@ app.get('/', (req, res) => {
   res.json({ message: 'Restaurant Management System API with Razorpay' });
 });
 
+// Serve frontend build
+const path = require('path');
+app.use(express.static('../frontend/build'));
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'));
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: 'Something went wrong!', error: err.message });
 });
+
 
 // Server
 const PORT = process.env.PORT || 5001;
