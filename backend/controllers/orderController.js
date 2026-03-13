@@ -47,7 +47,7 @@ const getOrder = async (req, res) => {
 
 // @desc    Create new order
 // @route   POST /api/orders
-// @access  Private (Waiter, Manager)
+// @access  Public (customer) / Private (staff)
 const createOrder = async (req, res) => {
   try {
     const { tableId, items, notes } = req.body;
@@ -69,7 +69,7 @@ const createOrder = async (req, res) => {
         name: menuItem.name,
         quantity: item.quantity,
         price: menuItem.price,
-        specialInstructions: item.specialInstructions,
+        specialInstructions: item.specialInstructions || '',
       });
     }
 
@@ -77,14 +77,17 @@ const createOrder = async (req, res) => {
     const orderCount = await Order.countDocuments();
     const orderNumber = `ORD-${Date.now()}-${orderCount + 1}`;
 
+    // Waiter optional for customer orders
+    const waiterId = req.user ? req.user.id : null;
+
     // Create order
     const order = await Order.create({
       orderNumber,
       table: tableId,
-      waiter: req.user.id,
+      waiter: waiterId,
       items: itemsWithPrices,
       totalAmount,
-      notes,
+      notes: notes || `Customer order from table ${tableId}`,
     });
 
     // Update table status if table is provided
@@ -220,3 +223,4 @@ module.exports = {
   processPayment,
   deleteOrder,
 };
+

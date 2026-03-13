@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider, AuthContext } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 import Navbar from './components/Navbar';
@@ -13,23 +13,23 @@ import Tables from './pages/Tables';
 import Reservations from './pages/Reservations';
 import Staff from './pages/Staff';
 import Download from './pages/Download';
-import PublicMenu from './pages/PublicMenu';
 import CustomerMenu from './pages/CustomerMenu';
 import QRCodePage from './pages/QRCode';
 import './App.css';
 
 function AppContent() {
   const { user } = useContext(AuthContext);
+  const location = useLocation();
+  const isCustomer = location.pathname.startsWith('/menu');
   
   return (
     <div className="App">
-      <Navbar />
+      {!isCustomer && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/menu/:tableId" element={<PublicMenu />} />
-        <Route path="/menu" element={<PublicMenu />} />
-        <Route path="/customer-menu" element={<CustomerMenu />} />
+        <Route path="/menu/:tableId" element={<CustomerMenu />} />
+        <Route path="/menu" element={<CustomerMenu />} />
         <Route
           path="/dashboard"
           element={
@@ -95,7 +95,7 @@ function AppContent() {
           }
         />
       </Routes>
-      <Footer />
+      {!isCustomer && <Footer />}
     </div>
   );
 }
@@ -103,7 +103,7 @@ function AppContent() {
 function App() {
   return (
     <AuthProvider>
-<Router basename={process.env.PUBLIC_URL || '/'}>
+      <Router basename={process.env.PUBLIC_URL || '/'}>
         <AppContent />
       </Router>
     </AuthProvider>
