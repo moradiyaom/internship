@@ -1,1 +1,0 @@
-1. [✅] Add proxy to frontend/package.json\n2. [✅] Created backend/.env.local (update MONGODB_URI)\n3. [ ] cd backend && npm install\n4. [ ] cd backend && npm start\n5. [ ] New terminal: cd frontend && npm install\n6. [ ] cd frontend && npm start\n7. [ ] Test localhost:3000/login (manager@restaurant.com/password123)

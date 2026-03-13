@@ -93,9 +93,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <div className="page-header">
-        <h1>📊 Dashboard</h1>
-      </div>
+      
 
       {/* Key Metrics */}
       <div className="dashboard-section">

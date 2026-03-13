@@ -21,7 +21,7 @@ import './App.css';
 function AppContent() {
   const { user } = useContext(AuthContext);
   const location = useLocation();
-  const isCustomer = location.pathname.startsWith('/menu');
+  const isCustomer = location.pathname.startsWith('/CustomerMenu');
   
   return (
     <div className="App">
