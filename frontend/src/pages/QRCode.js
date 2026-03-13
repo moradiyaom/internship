@@ -42,11 +42,13 @@ const QRCodePage = () => {
     }
   };
 
+
   const testMenu = () => {
-    window.open(qrUrl, '_blank');
+    window.open(`${window.location.origin}/menu`, '_blank');
   };
 
-const LOCAL_URL = `http://${window.location.hostname === 'localhost' ? 'localhost:3000' : window.location.hostname}/menu/${tableNumber}`;
+
+const LOCAL_URL = `${window.location.origin}/menu`;
 const RENDER_URL = `https://internship-owhq.onrender.com/menu`; // Webserver
 
 
@@ -76,7 +78,7 @@ const RENDER_URL = `https://internship-owhq.onrender.com/menu`; // Webserver
         <div className="qr-wrapper">
           <canvas ref={canvasRef} />
           <div className="qr-info">
-            <p><strong>URL:</strong> <span className="qr-url">{qrUrl}</span></p>
+            
  <p><strong>Local:</strong> {LOCAL_URL}</p>
   <p><strong>Render:</strong> {RENDER_URL}</p>
 
